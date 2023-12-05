@@ -31,16 +31,15 @@ function App() {
       return loading();
     }
 
-    if(user=== undefined){
-      return loading();
-    }
     
-    if(user === null){
+
+
+    if(!!!user){
       return <UnAuth/>
     }
 
  
-    if(user){
+    if(!!user){
     
       if(user.user_type === 'RENTER'){
         return <Renter/>

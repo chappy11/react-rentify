@@ -44,3 +44,9 @@ export const updateUserData = async(id:string,payload:any)=>{
 
     return resp.data;
 }
+
+export const getUsers = async(payload?:any)=>{
+    const resp = await axiosInstance.post(`user/users`,payload,{headers:{'Content-Type':'text/plain'}});
+
+    return resp.data;
+}

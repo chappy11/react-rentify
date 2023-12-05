@@ -16,13 +16,8 @@ const ITEM:SidebarItem[] = [
     },
     {
         title:'User Management',
-        route:Routes.HOME,
-        subitem:[
-            {
-                title:'Active',
-                route:Routes.HOME
-            }
-        ],
+        route:Routes.USER,
+        subitem:[]
     },
     {
         title:'Vehicle Management',

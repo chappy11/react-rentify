@@ -29,5 +29,7 @@ export enum Routes {
     NOTIFICATION = '/notification',
     CONVO = '/convo',
     MESSAGE = '/message',
-    RECEIPT = '/receipt'
+    RECEIPT = '/receipt',
+    //admin route
+    USER = '/user',
 }
