@@ -18,6 +18,7 @@ import Notifications from '../../pages/Notification';
 import ConvoList from '../../pages/message/ConvoList';
 import Convo from '../../pages/message/Convo';
 import ViewMaps from '../../pages/driver/ViewMaps';
+import OwnerIncome from '../../pages/owner/OwnerIncome';
 
 
 
@@ -81,6 +82,7 @@ export default function Owner() {
         <Route path={Routes.CONVO} element={<ConvoList/>}/>
         <Route path={Routes.MESSAGE+"/:id"} element={<Convo/>}/>
         <Route path={Routes.DRIVER_VIEW_MAPS+"/:id"} element={<ViewMaps/>}/>
+        <Route path={Routes.OWNER_INCOME} element={<OwnerIncome/>}/>
     </ReactRoutes>
   )
 }

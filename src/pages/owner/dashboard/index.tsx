@@ -35,8 +35,12 @@ const OPTION = [
     title:"Subscription",
     icon:TRANSACTIONS,
     redirect:Routes.SUBSCRIPTION,
+  },
+  {
+    title:"Subscription",
+    icon:TRANSACTIONS,
+    redirect:Routes.OWNER_INCOME,
   }
-
 ];
 
 
