@@ -24,6 +24,10 @@ const VEHICLE_TYPE:SelectInputOption[] = [
         value:'SUV'
     },
     {
+        name:'VAN',
+        value:'VAN'
+    },
+    {
         name:"CAR",
         value:'CAR'
     },
@@ -260,7 +264,10 @@ export default function AddVehicle() {
                 </div>  
             </div>
             <div className=" h-10"/>
-            <Button text="Submit" onClick={()=>handleSubmit()}/>
+            <div className="flex justify-between gap-3">
+                <Button text="Submit" onClick={() => handleSubmit()} />
+                <Button text='Back' onClick={() => window.history.back()} />
+            </div>
         </div>        
     </div>
 

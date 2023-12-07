@@ -33,8 +33,9 @@ export default function Drivers() {
                 <div className=' flex flex-1 items-center'>
                     <h1 className=" font-bold text-lg">My Drivers</h1>
                 </div>
-                <div className=' flex flex-1 justify-end'>
+                <div className=' flex flex-1 gap-3'>
                     <Button text='Add Driver'  onClick={()=>window.location.href=Routes.CREATE_DRIVER}/>
+                    <Button text='Back' onClick={() => window.history.back()} />
                 </div>
             </div>
             <div className=" h-10"/>

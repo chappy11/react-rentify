@@ -140,7 +140,10 @@ export default function AddDriver() {
                     <ImageInput onChange={(e)=>setLicense(e.target?.files?.[0])} image={license}/>
                 </div>
                 <div className=' h-10'/>
-                <Button text="Add This Driver" onClick={()=>handleAddDriver()}/>
+                <div className='flex gap-5'>
+                    <Button text='Add This Driver' onClick={() => handleAddDriver()} />
+                    <Button text='Back' onClick={() => window.history.back()} />
+                </div>
             </div>
         </div>
     </div>

@@ -16,23 +16,34 @@ export default function UpdateUser(props:Props) {
   const [fname,setFname] = useState<string>('');
   const [mname,setMname] = useState<string>('');
   const [lname,setLname] = useState<string>('');
-  const [email,setEmail] = useState<string>('');
   const [mobile,setMobile] = useState<string>('');
   const {alertError} = useAlertOption();
+
+  const containsSpecialCharacters = (input: string): boolean => {
+    const regex = /[!@#$%^&*(),.?":{}|<>]/;
+    return regex.test(input);
+};
+
   async function handleUpdate(){
     try {
+
+        if (containsSpecialCharacters(fname) || containsSpecialCharacters(mname) || containsSpecialCharacters(lname) || containsSpecialCharacters(mobile)) {
+            Swal.fire({
+                icon: 'error',
+                text: 'Special characters are not allowed in the input fields.',
+            });
+            return;
+        }
        
         const firstname = fname === '' ? user?.firstname : fname;
         const middlename = mname === '' ? user?.middlename : mname;
         const lastname = lname === '' ? user?.lastname : lname;
-        const emailData = email === '' ? user?.email : email;
         const mobileData = mobile === '' ? user?.mobileNumber : mobile;
         
         const payload = {
             firstname:firstname,
             middlename,
             lastname,
-            email:emailData,
             mobileNumber:mobileData
         }
 
@@ -60,7 +71,6 @@ export default function UpdateUser(props:Props) {
         <TextInput label="" onChange={(e)=>setFname(e?.target?.value)} placeholder={user?.firstname} value={fname}/>
         <TextInput label="" onChange={(e)=>setMname(e?.target?.value)} placeholder={user?.middlename} value={mname}/>
         <TextInput label="" onChange={(e)=>setLname(e?.target?.value)} placeholder={user?.lastname} value={lname}/>
-        <TextInput label="" onChange={(e)=>setEmail(e?.target?.value)} placeholder={user?.email} value={email}/>
         <TextInput label="" onChange={(e)=>setMobile(e?.target?.value)} placeholder={user?.mobileNumber} value={mobile}/>
         <div className=" h-12"/>
         <div className=" flex flex-row gap-5">

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Container } from '../../../component'
+import { Button } from '../../../component'
 import useGetBookingByCustomerId from '../../../hooks/bookings/useGetBookingByCustomerId'
 import TransactionCard from '../../owner/bookings/components/TransactionCard';
 import { formatFullName } from '../../../utils/string';
@@ -18,14 +18,19 @@ export default function MyTransactions() {
   }, [data])
   
   return (
-    <Container>
-        <div className=' w-full flex justify-center'>
-            <div className=' w-1/2 bg-white p-5'>
-               <h1>Booking List</h1> 
-                <div className=' h-10'/>
-                {displayData}
+    <div className='pt-32 flex justify-center'>
+        <div className="bg-white w-1/2 p-8">
+            <div className="flex items-center justify-between">
+              <h1 className="text-xl font-bold">Booking List</h1>
+              <div className="flex">
+                <div>
+                  <Button text='Back' onClick={() => window.history.back()} />
+                </div>
+              </div>
             </div>
+            <div className="h-10" />
+            {displayData}
         </div>
-    </Container>
+    </div>
   )
 }

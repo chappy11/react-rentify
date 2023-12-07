@@ -15,10 +15,23 @@ export default function UpdateDriver(props:Props) {
    const [mname,setMname] = useState<string>('');
    const [lname,setLname] = useState<string>('');
    const [contact,setContact] = useState<string>('');
-    const {alertError} = useAlertOption();
+   const {alertError} = useAlertOption();
+
+   const containsSpecialCharacters = (input: string): boolean => {
+    const regex = /[!@#$%^&*(),.?":{}|<>]/;
+    return regex.test(input);
+   };
 
    async function handleUpdate(){
     try {
+        if (containsSpecialCharacters(fname) || containsSpecialCharacters(mname) || containsSpecialCharacters(lname) || containsSpecialCharacters(contact)) {
+            Swal.fire({
+                icon: 'error',
+                text: 'Special characters are not allowed in the input fields.',
+            });
+            return;
+        }
+
         const payload = {
             firstName:fname === '' ? data?.firstName : fname,
             middleName:mname === '' ? data?.middleName : mname,

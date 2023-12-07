@@ -20,7 +20,10 @@ export default function DisplayUser(props:Props) {
         <ListItem label="Mobile Number" value={user?.mobileNumber}/>
         <ListItem label="Birthdate" value={user?.birthdate}/>
         <div className=" h-10"/>
-        <Button text="Update Details" onClick={()=>props.setIsUpdate(true)}/>
+        <div className=' my-10 flex w-full flex-row gap-5'>
+            <Button text="Update Details" onClick={()=>props.setIsUpdate(true)}/>
+            <Button text='Back' onClick={() => window.history.back()} />
+        </div>
     </div>
   )
  }
