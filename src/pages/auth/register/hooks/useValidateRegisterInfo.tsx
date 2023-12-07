@@ -3,6 +3,7 @@ import  {  useCallback, useState } from 'react'
 import { dataIsRequired, dataIsInvalid } from '../../../../constant/String';
 import useAlertOption from '../../../../hooks/useAlertOption';
 import { validatePersonName, validateMobileNumber, validateEmail } from '../../../../utils/InputValidation';
+import dayjs from 'dayjs';
 
 export default function useValidateRegisterInfo() {
     const [username,setUsername] =useState<string>('');
@@ -101,6 +102,15 @@ export default function useValidateRegisterInfo() {
 
         if(!birthdate){
             alertWarning(dataIsRequired('Birthdate'));
+            return false;
+        }
+
+        const bday = dayjs(birthdate);
+        const age = dayjs().diff(bday,'year');
+
+        if(age < 18){
+            alertWarning('Your age is probihited');
+
             return false;
         }
 
