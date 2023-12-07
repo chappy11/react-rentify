@@ -106,8 +106,7 @@ return (
         <div className=' bg-white '>
           <table className=" w-full">
             <thead className=" bg-slate-300">
-                <tr className="">
-                   
+                <tr className="">                   
                     <th className=" p-3">Firstname</th>
                     <th className=" p-3">Middle Name</th>
                     <th className=" p-3">Lastname</th>     

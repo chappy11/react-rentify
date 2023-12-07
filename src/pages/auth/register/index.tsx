@@ -76,8 +76,8 @@ function Register() {
                 address
             }
             const resp = await register(payload);
-            const {status} = resp.data;
-            if(status === 1){
+            const {status,message} = resp.data;
+            if(status.toString() === "1"){
                 Swal.fire({
                     title:'Success',
                     text:'Successfully Registered',
@@ -89,7 +89,7 @@ function Register() {
                 return;
             }
 
-            alertError()
+            alertError(message);
         } catch (error) {
             alertError()
         }finally{
