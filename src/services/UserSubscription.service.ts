@@ -15,3 +15,10 @@ export const subscribe = async(params:any)=>{
 
     return resp.data;
 }
+
+
+export const getAdminIncome = async()=>{
+    const resp = await axiosInstance.get('UserSubscription/income');
+
+    return resp.data;
+}

@@ -7,6 +7,8 @@ import Requests from '../../pages/admin/Requests';
 import Categories from '../../pages/admin/Categories';
 import Subscription from '../../pages/admin/Subscription';
 import User from '../../pages/admin/User/User';
+import Vehicles from '../../pages/admin/Vehicles';
+import Income from '../../pages/admin/Income';
 
 export default function AdminRoute() {
   return (
@@ -25,6 +27,8 @@ export default function AdminRoute() {
         <Route path={Routes.CATEGORIES} element={<Categories/>}/>
         <Route path={Routes.SUBSCRIPTION} element={<Subscription/>}/>
         <Route path={Routes.USER} element={<User/>}/>
+        <Route path={Routes.VEHICLES} element={<Vehicles/>}/>
+        <Route path={Routes.ADMIN_INCOME} element={<Income/>}/>
     </ReactRoutes>
     </SideNavigation>
     </>

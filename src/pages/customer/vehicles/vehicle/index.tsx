@@ -193,8 +193,8 @@ const [post,setPost] = useState<LatLngExpression>();
             setIsOpen(true)
             setIsDisplayMap(true);
         },
-        ()=>{
-            console.log("ERROR")
+        (error)=>{
+            console.log("ERROR",error)
         },
         option
     );

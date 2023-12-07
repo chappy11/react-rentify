@@ -32,4 +32,5 @@ export enum Routes {
     RECEIPT = '/receipt',
     //admin route
     USER = '/user',
+    ADMIN_INCOME = '/adminincome',
 }

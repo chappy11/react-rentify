@@ -12,6 +12,7 @@ import {
   import { Bar } from 'react-chartjs-2'
 import dayjs from 'dayjs';
 import useGetUserForByMonth from '../../../hooks/user/useGetUserForByMonth';
+import useGetAllUser from '../../../hooks/user/useGetAllUser';
   
   ChartJS.register(
     CategoryScale,
@@ -38,6 +39,7 @@ import useGetUserForByMonth from '../../../hooks/user/useGetUserForByMonth';
   ];
 export default function User() {    
     const {data:montsarr} = useGetUserForByMonth();
+    const {data:users} = useGetAllUser();
     console.log('monts',montsarr)
     console.log(dayjs('2023-11-12').month())
 
@@ -60,10 +62,43 @@ export default function User() {
         
           // Define chart options with correct scale configuration
         
-          return <Bar  data={data} options={options} />;
-    }, [montsarr])
+          return <Bar className=' w-52 '  data={data} options={options} />;
+    }, [montsarr]);
 
-        return <div className=' w-full via-gray-800'>
+    const displayData = useMemo(()=>{
+      return users.map((val:any,i:number)=>{
+        return (
+          <tr className=" border-b border-slate-400" key={i.toString()}>
+                    <td className=" p-3 text-center">{val.firstname}</td>
+                    <td className=" p-3 text-center">{val.middlename}</td>
+                    <td className=" p-3 text-center">{val.lastname}</td> 
+                    <td className=" p-3 text-center">{val.birthdate}</td>
+                    <td className="p-3 text-center">{val.user_type}</td>
+                </tr>
+        );
+      })
+    },[users])
+
+        return <div className=' w-full flex  flex-col'>
+          <div className=' w-full mb-10 flex  justify-center items-end'>
             {displayBarGraph}
+          </div>
+          <div className=' bg-white'>
+          <table className=" w-full">
+            <thead className=" bg-slate-300">
+                <tr className="">
+                    <th className=" p-3">Firstname</th>
+                    <th className=" p-3">Middle Name</th>
+                    <th className=" p-3">Lastname</th>
+                    <th className=" p-3">Birthdate</th>
+                    <th className=" p-3">User Type</th>
+                </tr>
+            </thead>
+            <tbody>
+               {displayData}
+            </tbody>
+        </table>
+
+          </div>           
         </div>
     }

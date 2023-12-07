@@ -21,7 +21,7 @@ const ITEM:SidebarItem[] = [
     },
     {
         title:'Vehicle Management',
-        route:Routes.HOME,
+        route:Routes.VEHICLES,
         subitem:[],
     },
     {
@@ -37,6 +37,11 @@ const ITEM:SidebarItem[] = [
     {
         title:'Subscription Management',
         route:Routes.SUBSCRIPTION,
+        subitem:[]
+    },
+    {
+        title:'Income ',
+        route:Routes.ADMIN_INCOME,
         subitem:[]
     },
 
@@ -70,7 +75,7 @@ export default function SideNavigation(props:Props) {
   }
   return (
     <div className=" flex ">
-        <nav className=' w-1/5 bg-slate-950 h-screen'>
+        <nav className=' w-1/5 bg-slate-950 h-screen fixed top-0 left-0'>
             <div className=" px-8 py-14">
                 <h1 className="  text-white font-bold text-2xl">Rentify Admin</h1>
             </div>
@@ -80,7 +85,7 @@ export default function SideNavigation(props:Props) {
         <div className=" h-50 w-full p-5 bg-slate-200 flex justify-end">
             <button className=" text-end px-5" onClick={handleLogout}>Logout</button>
         </div>
-            <div className=" w-full  p-10">
+            <div className="   p-10 ml-[350px]">
                 {props.children}
             </div>
         </div>
