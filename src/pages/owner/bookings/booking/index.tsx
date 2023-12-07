@@ -72,7 +72,7 @@ export default function Booking() {
         );
 
     },[data?.driver, data?.user_type, driversList, selectedDriver, user])
-    console.log('user',user)
+
     const handleAccept = useCallback(async()=>{
         try {
             if(!selectedDriver){
@@ -300,6 +300,9 @@ export default function Booking() {
         return <p className=" text-red-500">This Transaction is Canceled Or Declined</p>
     }
 
+    if(data?.booking?.paymentCode){
+        return;
+    }
     return <div>
         <Button outline text={"Additional Fee"} onClick={()=>handleOpenAdditionalFee()}/>
     </div>
