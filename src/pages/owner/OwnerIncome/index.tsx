@@ -110,7 +110,7 @@ export default function OwnerIncome() {
                {displayData}
             </tbody>
         </table>
-        <h1 className=' text-xl text-right p-4'><span className=' font-bold text-gray-800'>Total Amount: </span>: Php {totalIncome}</h1>
+        <h1 className=' text-xl text-right p-4'><span className=' font-bold text-gray-800'>Total Amount: </span>: Php {totalIncome.toFixed(2)}</h1>
         </div>
         </div>
     </div>
