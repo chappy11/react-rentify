@@ -14,7 +14,7 @@ export default function DriverRoute() {
   return (
     <ReactRoutes>
         <Route
-            path={Routes.DRIVER_USER}
+            path={Routes.HOME}
             element={<Driver/>}
         />
          <Route

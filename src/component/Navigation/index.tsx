@@ -44,6 +44,10 @@ export default  function Navigation() {
     const displayUser = useMemo(()=>{
         if(!user){
            return(<>
+                <a href={Routes.HOME}  className=" text-white px-4 hover:text-slate-300" >
+                Home
+            </a>
+
             <li className=" text-white px-4">
                 About
             </li>
@@ -56,6 +60,10 @@ export default  function Navigation() {
 
         if(!user.user_type){
             return(<>
+                <a href={Routes.HOME}  className=" text-white px-4 hover:text-slate-300" >
+                Current Transactions
+            </a>
+
                  <a href={Routes.HISTORY}  className=" text-white px-4 hover:text-slate-300 relative" >
                     Transaction History
                 </a>
@@ -75,7 +83,10 @@ export default  function Navigation() {
 
         if(user.user_type === 'OWNER'){
             return(<>
-                
+                            <a href={Routes.HOME}  className=" text-white px-4 hover:text-slate-300" >
+                Home
+            </a>
+
                 <a href={Routes.PROFILE}  className=" text-white px-4 hover:text-slate-300" >
                         {user?.username}
                 </a>
@@ -90,6 +101,10 @@ export default  function Navigation() {
         }
 
         return(<>
+                    <a href={Routes.HOME}  className=" text-white px-4 hover:text-slate-300" >
+                Home
+            </a>
+
             <a href={Routes.REGISTER_OWNER}>
                 <li className=" text-white px-4">
                     Become a Owner
@@ -147,9 +162,6 @@ export default  function Navigation() {
             </li>
         </ul>
         <ul className=" flex flex-1 py-3 mr-10 justify-end">
-            <a href={Routes.HOME}  className=" text-white px-4 hover:text-slate-300" >
-                Home
-            </a>
             {displayUser}
         </ul>
     </nav>
