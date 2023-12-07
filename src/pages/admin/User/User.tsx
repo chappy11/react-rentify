@@ -25,9 +25,6 @@ import useGetUserForByMonth from '../../../hooks/user/useGetUserForByMonth';
   export const options = {
     responsive: true,
     plugins: {
-      legend: {
-        position: 'top' as const,
-      },
       title: {
         display: true,
         text: 'User List',
@@ -55,7 +52,7 @@ export default function User() {
               {
                 label: 'Dataset 1',
                 data: montsarr,
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                backgroundColor: 'rgb(31 41 55)',
                 // You can add more properties as needed
               },
             ],
