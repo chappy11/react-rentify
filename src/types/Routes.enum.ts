@@ -30,6 +30,7 @@ export enum Routes {
     CONVO = '/convo',
     MESSAGE = '/message',
     RECEIPT = '/receipt',
+    HISTORY = '/history',
     //admin route
     USER = '/user',
     ADMIN_INCOME = '/adminincome',

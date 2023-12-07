@@ -8,6 +8,7 @@ import ViewDestinationMaps from '../../pages/owner/bookings/ViewDestinationMaps'
 import Profile from '../../pages/profile';
 import ConvoList from '../../pages/message/ConvoList';
 import Convo from '../../pages/message/Convo';
+import TransactionHistory from '../../pages/driver/TransactionHistory';
 
 export default function DriverRoute() {
   return (
@@ -35,6 +36,7 @@ export default function DriverRoute() {
         />
         <Route path={Routes.CONVO} element={<ConvoList/>}/>
         <Route path={Routes.MESSAGE+"/:id"} element={<Convo/>}/>
+        <Route path={Routes.HISTORY} element={<TransactionHistory/>}/>
     </ReactRoutes>
   )
 }

@@ -56,10 +56,14 @@ export default  function Navigation() {
 
         if(!user.user_type){
             return(<>
-                <a href={Routes.VEHICLE}>
-                    <li className=" text-white px-4">
-                       Accounts
-                    </li>
+                 <a href={Routes.HISTORY}  className=" text-white px-4 hover:text-slate-300 relative" >
+                    Transaction History
+                </a>
+                <a href={Routes.NOTIFICATION}  className=" text-white px-4 hover:text-slate-300 relative" >
+                    <label className=' absolute top-[-10px] right-[10px]'>{displayNotifCount}</label><MdNotifications className=' text-2xl'/>
+                </a>
+                <a href={Routes.CONVO}  className=" text-white px-4 hover:text-slate-300 relative" >
+                    <label className=' absolute top-[-10px] right-[10px]'>{}</label><MdEmail className=' text-2xl'/>
                 </a>
                     <a href={Routes.LOGIN}  className=" text-white px-4 hover:text-slate-300" >
                         {user?.username}

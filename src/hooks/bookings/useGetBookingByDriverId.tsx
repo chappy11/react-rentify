@@ -2,7 +2,12 @@ import  { useCallback, useEffect, useState } from 'react'
 import {  getDataByDriverId } from '../../services/BookingsService.service';
 import { getDataFromStorage } from '../../utils/storage';
 
-export default function useGetBookingByDriverId() {
+type Params = {
+  isSuccess:string;
+}
+
+
+export default function useGetBookingByDriverId(params:Params) {
     const [data,setData] = useState<any[]>([]);
   
     const sendRequest = useCallback(
@@ -12,7 +17,7 @@ export default function useGetBookingByDriverId() {
             if(!user){
                 return;
             }
-            const response = await getDataByDriverId(user?.driver_id);
+            const response = await getDataByDriverId(user?.driver_id,params.isSuccess);
 
 
             setData(response.data);
@@ -20,7 +25,7 @@ export default function useGetBookingByDriverId() {
             
         }
       },
-      [],
+      [params],
     )
 
     useEffect(() => {

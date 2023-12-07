@@ -28,8 +28,8 @@ export const acceptTransactions = async(payload:any)=>{
     return response.data;
 }
 
-export const getDataByDriverId = async(driverId:string)=>{
-    const response = await axiosInstance.get(`bookings/bookingbydriver/${driverId}`);
+export const getDataByDriverId = async(driverId:string,isSuccess:string)=>{
+    const response = await axiosInstance.get(`bookings/bookingbydriver/${driverId}/${isSuccess}`);
 
     return response.data;
 }

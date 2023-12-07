@@ -6,7 +6,7 @@ import TransactionCard from '../owner/bookings/components/TransactionCard';
 import { formatFullName } from '../../utils/string';
 
 export default function Driver() {
-const {data} = useGetBookingByDriverId();
+const {data} = useGetBookingByDriverId({isSuccess:'0'});
 
 const displayData = useMemo(() => {
     if(!data){
