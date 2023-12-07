@@ -84,7 +84,8 @@ const [post,setPost] = useState<LatLngExpression>();
 
       const tileDisabled = ({ date, view }:any):boolean => {
         // Disable dates before the current date
-        return date < new Date();
+        const currentDate = new Date();
+        return date < new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
       };
     
 
@@ -119,7 +120,8 @@ const [post,setPost] = useState<LatLngExpression>();
   }, [setPost]);
   
     function handleClickSelectPosition(){  
-         handleCalculateDistance((origin as any)[0] as number, (origin as any)[1], (destination as any)[0], (destination as any)[1]);
+       
+        handleCalculateDistance((origin as any)[0] as number, (origin as any)[1], (destination as any)[0], (destination as any)[1]);
          setIsOpen(false);              
     }
 
