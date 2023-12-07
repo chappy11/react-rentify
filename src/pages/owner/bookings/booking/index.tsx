@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Button, Container, ListItem } from "../../../../component";
 import useGetBookingsByRefId from "../../../../hooks/bookings/useGetBookingsByRefId";
-
+import { Rating } from '@smastrom/react-rating';
 import { formatFullName } from "../../../../utils/string";
 import dayjs from "dayjs";
 import { configVariable } from "../../../../constant/ConfigVariable";
@@ -27,9 +27,17 @@ export default function Booking() {
     const {data:driversList} = useGetDriversByUserId({userId:data?.owner?.user_id ?? data?.owner?.user_id});
     const {setContent,setIsOpen,setSize} = useModalContext();
     const notShowThisStatus = [BookingStatus.CANCELED,BookingStatus.DECLINED];
-
+    console.log("GG",data)
     const [selectedDriver,setSelectedDriver] = useState<any>(null);
     const {alertWarning,alertSuccess,alertError} = useAlertOption();
+
+    const displayRating = useMemo(()=>{
+        const rate = data?.owner_rating ? parseInt(data?.owner_rating) : 0;
+
+        return <div className=" w-32">
+<Rating value={rate} readOnly className=" "/>
+            </div>
+    },[data?.owner_rating])
 
     const displayDriver = useMemo(()=>{
         if(!user){
@@ -373,9 +381,11 @@ export default function Booking() {
                 <div className=" flex  flex-row">
                     <div className=" flex flex-1 flex-col">
                         <p className=" font-bold">{data?.vehicles?.brand}</p>
+                          {displayRating}
                         <div className=" h-5"/>
                         <ListItem label="Description" value={data?.vehicles?.description}/>
                         <ListItem label="Model" value={data?.vehicles?.model}/>
+                        <ListItem label="Owner Name" value={formatFullName({firstName:data?.owner?.firstname,middleName:data?.owner?.middlename,lastName:data?.owner?.lastname})}/>
                         <ListItem label="Vehicle Type" value={data?.vehicles?.vehicle_type}/>
                     </div>
                     <div className=" flex flex-1 flex-row flex-wrap items-end justify-center">
@@ -383,6 +393,7 @@ export default function Booking() {
                         {/* <img src={configVariable.BASE_URL+data?.vehicles?.vehicleImage} alt="Vehicle" className=" h-[200px] w-[200px]"/> */}
                     </div>
                 </div>
+
                 <div className=" h-10"/>
                 <h1 className=" font-bold text-xl"> Driver</h1>
                 <div className=" h-5"/>

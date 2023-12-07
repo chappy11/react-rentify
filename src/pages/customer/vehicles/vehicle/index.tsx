@@ -20,6 +20,7 @@ import Swal from 'sweetalert2';
 import { Routes } from '../../../../types/Routes.enum';
 import { useModalContext } from '../../../../context/ModalContext/ModalContext';
 import MessageModal from '../../../../component/MessageModal';
+import { Rating } from '@smastrom/react-rating';
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -343,6 +344,9 @@ const [post,setPost] = useState<LatLngExpression>();
                 </div>
                 <div className=' px-4 flex flex-1 flex-col'>
                     <p className=' font-bold'>{vehicle?.description}</p>
+                    <div className=' mt-3 w-1/2'>
+                        <Rating value={vehicle?.owner_rating ? vehicle?.owner_rating : 0}/>
+                    </div>
                     <div className=' h-[0.5px] bg-slate-300 my-2'/>
                     <div className=' h-2'/>
                     <ListItem label='Brand' value={vehicle?.brand as string}/>
