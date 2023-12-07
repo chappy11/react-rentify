@@ -11,6 +11,7 @@ import Notifications from '../../pages/Notification';
 import ConvoList from '../../pages/message/ConvoList';
 import Convo from '../../pages/message/Convo';
 import BookingReciept from '../../pages/owner/bookings/BookingReciept';
+import ViewMaps from '../../pages/driver/ViewMaps';
 
 export default function Renter() {
   return (
@@ -48,6 +49,7 @@ export default function Renter() {
         <Route path={Routes.CONVO} element={<ConvoList/>}/>
         <Route path={Routes.MESSAGE+"/:id"} element={<Convo/>}/>
         <Route path={Routes.RECEIPT+"/:id"}  element={<BookingReciept/>}/>
+        <Route path={Routes.DRIVER_VIEW_MAPS+"/:id"} element={<ViewMaps/>}/>
     </ReactRoutes>
   )
 }

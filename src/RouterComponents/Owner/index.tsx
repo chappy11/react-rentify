@@ -80,11 +80,7 @@ export default function Owner() {
         />
         <Route path={Routes.CONVO} element={<ConvoList/>}/>
         <Route path={Routes.MESSAGE+"/:id"} element={<Convo/>}/>
-        <Route 
-        path={Routes.DRIVER_VIEW_MAPS+"/:id"}
-        element={<ViewMaps/>}
-       />
-          
+        <Route path={Routes.DRIVER_VIEW_MAPS+"/:id"} element={<ViewMaps/>}/>
     </ReactRoutes>
   )
 }

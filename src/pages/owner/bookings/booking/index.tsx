@@ -303,7 +303,7 @@ export default function Booking() {
     return <div>
         <Button outline text={"Additional Fee"} onClick={()=>handleOpenAdditionalFee()}/>
     </div>
-  },[data?.booking?.additionalfee, data?.booking?.paymentMethod, data?.booking?.status, user?.user_type]) 
+  },[data?.booking?.additionalfee, data?.booking?.paymentMethod, data?.booking?.status, notShowThisStatus, user?.user_type]) 
   
   const displayTotal = useMemo(()=>{
     return parseFloat(data?.booking?.additionalfee) + parseFloat(data?.booking?.amount)
