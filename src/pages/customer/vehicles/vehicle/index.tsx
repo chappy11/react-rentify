@@ -21,6 +21,7 @@ import { Routes } from '../../../../types/Routes.enum';
 import { useModalContext } from '../../../../context/ModalContext/ModalContext';
 import MessageModal from '../../../../component/MessageModal';
 import { Rating } from '@smastrom/react-rating';
+import { formatFullName } from '../../../../utils/string';
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -352,6 +353,7 @@ const [post,setPost] = useState<LatLngExpression>();
                     <ListItem label='Brand' value={vehicle?.brand as string}/>
                     <ListItem label='Year Model' value={vehicle?.model as string} />
                     <ListItem label='Vehicle Type' value={vehicle?.vehicle_type as string}/>
+                    <ListItem label='Owner Name' value={formatFullName({firstName:vehicle?.firstname,middleName:vehicle?.middlename,lastName:vehicle?.lastname})}/>
                     <ListItem label='Capacity' value={vehicle?.capacity + "kg"}/>
                     <ListItem label='Rent Price' value={vehicle?.price as string}/>
                     <>{displayDistance}</>
