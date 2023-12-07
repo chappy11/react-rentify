@@ -1,7 +1,7 @@
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import 'leaflet/dist/leaflet.css';
-import L, { LatLngExpression, LeafletMouseEvent, Marker, } from 'leaflet';
+import L, { LatLngExpression, LeafletMouseEvent, Marker, Popup, } from 'leaflet';
 import { MapContainer, TileLayer, Marker as MapMarker } from 'react-leaflet';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -25,6 +25,8 @@ type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 
+const REDMARKER = require('../../../../assets/images/redmarker.png');
+const GREENMARKER = require('../../../../assets/images/markergreen.png');
 const PAYMENT_METHOD = [
     {
         name:"Select Payment Method",
@@ -53,12 +55,14 @@ export default function Vehicle() {
     const [paymentMethod,setPaymentMethod] = useState<string>("");
     const {setIsOpen:setModalOpen,setContent} = useModalContext()
     const [time,setTime] = useState<string>('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const originIcon = new L.DivIcon({
      className:' pin2',
       iconSize:[25,25]
     });
 
     const {user} = useGetAccountFromStorage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const destinationIcon = new L.DivIcon({
         className:' pin3',
          iconSize:[25,25]
@@ -119,8 +123,36 @@ const [post,setPost] = useState<LatLngExpression>();
     }
   }, [setPost]);
   
+  const areArraysEqual = (arr1: any[], arr2:any[]): boolean => {
+    if (arr1.length !== arr2.length) {
+      return false; // If array lengths are different, they can't be equal
+    }
+  
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] !== arr2[i]) {
+        return false; // If any element at the same index differs, arrays are not equal
+      }
+    }
+  
+    return true; // If no differences found, arrays are equal
+  };
+
+  
+  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function handleClickSelectPosition(){  
-       
+        
+        if(!origin){
+            alertError("Please set origin location");
+            return;
+        }
+
+        if(!destination){
+            alertError("Please set destination location");
+            return;
+        }
+        
+        
         handleCalculateDistance((origin as any)[0] as number, (origin as any)[1], (destination as any)[0], (destination as any)[1]);
          setIsOpen(false);              
     }
@@ -133,18 +165,30 @@ const [post,setPost] = useState<LatLngExpression>();
             const newOrigin = origin ? origin : coordinate;
             const newDestination = destination ? destination : coordinate;
             return(
-                <div className=" relative">  
+                <div className=" relative flex flex-row-reverse flex-wrap">  
+                    <div className='  bg-white bottom-20 mt-10 z-50 flex flex-col   px-8'>
+                    <h1 className=' font-bold text-xl'>Please Choose Your Destination</h1>
+                    <div className=' flex justify-center flex-col flex-1'>
+                    <div className=' flex flex-row gap-4'>
+                    <img src={GREENMARKER} width={15} height={15} alt='green marker'/>
                     
-                    <div className=' absolute bottom-20 z-50 flex w-full justify-center'>
-                      
-                        <div className=' w-1/4 mx-10'>
-                            <Button text='Confirm your Location' onClick={()=>handleClickSelectPosition()}/>
-                        </div>
-                        <div className=' w-1/4 mx-10'>
-                            <Button text='Back' onClick={()=>setIsOpen(false)} outline/>
-                        </div>
+                    <p className=' text-green-800 font-bold'>Drag the green marker it represent your pick up location </p>
                     </div>
-                    <h1>Please Choose Your Destination</h1>
+                    <div className=' h-10'/>
+                    <div className=' flex flex-row gap-4'>
+                    <img src={REDMARKER} width={15} height={15} alt='RED marker'/>
+                    <p className=' text-red-800 font-bold'>Drag the red marker it represent your pick up destination</p>
+                    </div>
+                    <div className=' h-10'/>
+                   
+                            <Button text='Confirm your Location' onClick={()=>handleClickSelectPosition()}/>
+                            <div className=' h-10'/>
+                            <Button text='Back' onClick={()=>setIsOpen(false)} outline/>
+
+                    </div>
+                                               </div>
+                    <div className=' flex-1'>   
+                   
                     <MapContainer center={newOrigin} zoom={13} className=' z-0' >
                     
                     <TileLayer
@@ -180,7 +224,7 @@ const [post,setPost] = useState<LatLngExpression>();
                         >
                         </MapMarker>
                     </MapContainer>
-                  
+                    </div>
                 </div>
             );
         }
