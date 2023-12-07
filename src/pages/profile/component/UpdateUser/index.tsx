@@ -5,6 +5,7 @@ import { updateUserData } from "../../../../services/UserService";
 import Swal from 'sweetalert2';
 import { Routes } from "../../../../types/Routes.enum";
 import useAlertOption from "../../../../hooks/useAlertOption";
+import { validateMobileNumber } from "../../../../utils/InputValidation";
 
 type Props = {
     user:UserDto
@@ -17,11 +18,12 @@ export default function UpdateUser(props:Props) {
   const [mname,setMname] = useState<string>('');
   const [lname,setLname] = useState<string>('');
   const [mobile,setMobile] = useState<string>('');
-  const {alertError} = useAlertOption();
+  const {alertError,alertWarning} = useAlertOption();
 
   const containsSpecialCharacters = (input: string): boolean => {
     const regex = /[!@#$%^&*(),.?":{}|<>]/;
     return regex.test(input);
+
 };
 
   async function handleUpdate(){
@@ -34,7 +36,11 @@ export default function UpdateUser(props:Props) {
             });
             return;
         }
-       
+
+        if(!validateMobileNumber(mobile) && mobile !== ''){
+            alertError("Mobile Number is Invalid")
+            return;
+        }
         const firstname = fname === '' ? user?.firstname : fname;
         const middlename = mname === '' ? user?.middlename : mname;
         const lastname = lname === '' ? user?.lastname : lname;

@@ -3,6 +3,7 @@ import { Button, TextInput } from '../../../../../component';
 import useAlertOption from '../../../../../hooks/useAlertOption';
 import { updateDriverDetails } from '../../../../../services/DriverService.service';
 import Swal from 'sweetalert2';
+import { validateMobileNumber } from '../../../../../utils/InputValidation';
 
 type Props = {
     data:any
@@ -32,6 +33,10 @@ export default function UpdateDriver(props:Props) {
             return;
         }
 
+        if(!validateMobileNumber(contact) && contact !== ''){
+            alertError("Mobile Number is Invalid");
+            return;
+        }
         const payload = {
             firstName:fname === '' ? data?.firstName : fname,
             middleName:mname === '' ? data?.middleName : mname,
