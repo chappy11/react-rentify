@@ -111,17 +111,18 @@ function Register() {
             setCode(generatedCode.toString())
             const payload = {
                 code:generatedCode.toString(),
-                email
+                email,
+                mobileNumber
             }
             const resp = await sendVerificationCode(payload);
 
             if(resp.status.toString() === "1"){
-                setContent(<UserVerification alert={alert} verficationCode={generatedCode.toString()} email={email} setIsOpen={setIsOpen} handleRegister={handleRegister}/>);
+                setContent(<UserVerification alert={alert} verficationCode={generatedCode.toString()} email={email} setIsOpen={setIsOpen} handleRegister={handleRegister} mobileNumber={mobileNumber}/>);
                 setIsOpen(true)
                 return;
             }
 
-            alertError();
+            alertError(resp.message);
         } catch (error) {
             alertError();
         }finally{

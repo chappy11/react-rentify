@@ -5,6 +5,7 @@ import { Button } from "../../../../component";
 
 type Props ={
     email:string;
+    mobileNumber:string;
     verficationCode:string;
     setIsOpen:(isOpen:boolean)=>void;
     alert:any
