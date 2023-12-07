@@ -82,6 +82,11 @@ const [post,setPost] = useState<LatLngExpression>();
         
       }
 
+      const tileDisabled = ({ date, view }:any):boolean => {
+        // Disable dates before the current date
+        return date < new Date();
+      };
+    
 
 
     const displayTotal = useMemo(()=>{
@@ -305,7 +310,7 @@ const [post,setPost] = useState<LatLngExpression>();
             </div>
                 <div className=' flex flex-row'>
                     <div className=' flex flex-1'>
-                    <Calendar onChange={onChange}/>
+                    <Calendar onChange={onChange} tileDisabled={tileDisabled} value={value}/>
                     </div>
              
                 <div className=' flex flex-1 flex-col'>
