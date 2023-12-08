@@ -3,6 +3,7 @@ import { Routes } from "../../types/Routes.enum";
 import ItemList from "./components/ItemList";
 import { SidebarItem } from "../../types/SidebarItemTypes.type";
 import Swal from 'sweetalert2';
+import useGetAccountFromStorage from "../../hooks/useGetAccountFromStorage";
 
 type Props ={
     children:React.ReactNode
@@ -48,6 +49,7 @@ const ITEM:SidebarItem[] = [
 ];
 
 export default function SideNavigation(props:Props) {
+    const {user} = useGetAccountFromStorage();
 
     const displayItem = useMemo(()=>{
         return ITEM.map((val:any,index:number)=>(
@@ -73,6 +75,15 @@ export default function SideNavigation(props:Props) {
         }    
     })
   }
+
+  const displayUser = useMemo(()=>{
+    if(!user){
+        return;
+    }
+
+    return <button onClick={()=>window.location.href=Routes.PROFILE}>{user.username}</button>
+  },[user]);
+
   return (
     <div className=" flex ">
         <nav className=' w-1/5 bg-slate-950 h-screen fixed top-0 left-0'>
@@ -82,7 +93,8 @@ export default function SideNavigation(props:Props) {
             {displayItem}
         </nav>
         <div className=" w-full">
-        <div className=" h-50 w-full p-5 bg-slate-200 flex justify-end">
+        <div className=" h-50 w-full p-5 bg-slate-200 flex flex-row justify-end">
+            {displayUser}
             <button className=" text-end px-5" onClick={handleLogout}>Logout</button>
         </div>
             <div className="   p-10 ml-[350px]">
