@@ -83,3 +83,10 @@ export const getSuccessTransactions = async(userid:string)=>{
 
     return response.data;
 }
+
+export const gettodaysbooking = async()=>{
+    const response = await axiosInstance.get(`bookings/gettodaysbooking`)
+
+
+    return response.data;
+}

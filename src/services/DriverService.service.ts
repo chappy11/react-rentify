@@ -36,3 +36,10 @@ export const updateDriverDetails = async(id:string,payload:any)=>{
 
     return resp.data;
 }
+
+
+export const getDrivers = async()=>{
+    const resp = await axiosInstance.get('drivers/drivers');
+
+    return resp.data;
+}
