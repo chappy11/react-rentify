@@ -222,7 +222,7 @@ export default function AddVehicle() {
     console.log("NONCE",nonce)
     const modalContent = useCallback((img:any,non:string) =>{
         return(
-            <div className=" w-full">
+            <div className=" w-[450px]">
                 <h1>Upload Image</h1>
                 <div className=" w-full flex justify-center items-center">
                    <img src={URL.createObjectURL(img)} className=" w-32 h-32" alt="img" />
