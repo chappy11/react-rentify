@@ -3,6 +3,7 @@ import { Button } from '../../../component'
 import useGetBookingByCustomerId from '../../../hooks/bookings/useGetBookingByCustomerId'
 import TransactionCard from '../../owner/bookings/components/TransactionCard';
 import { formatFullName } from '../../../utils/string';
+import { Routes } from '../../../types/Routes.enum';
 
 export default function MyTransactions() {
   const {data} = useGetBookingByCustomerId();
@@ -24,7 +25,7 @@ export default function MyTransactions() {
               <h1 className="text-xl font-bold">Booking List</h1>
               <div className="flex">
                 <div>
-                  <Button text='Back' onClick={() => window.history.back()} />
+                  <Button text='Back' onClick={() => window.location.href=Routes.HOME} />
                 </div>
               </div>
             </div>

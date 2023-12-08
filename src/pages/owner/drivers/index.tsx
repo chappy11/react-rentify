@@ -35,7 +35,7 @@ export default function Drivers() {
                 </div>
                 <div className=' flex flex-1 gap-3'>
                     <Button text='Add Driver'  onClick={()=>window.location.href=Routes.CREATE_DRIVER}/>
-                    <Button text='Back' onClick={() => window.history.back()} />
+                    <Button text='Back' onClick={() => window.location.href=Routes.HOME} />
                 </div>
             </div>
             <div className=" h-10"/>

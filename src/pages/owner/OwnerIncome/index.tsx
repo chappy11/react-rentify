@@ -2,6 +2,7 @@ import React, { useMemo, useRef } from 'react'
 import useGetUserByStatus from '../../../hooks/user/useGetUserByStatus'
 import { Container,Button } from '../../../component';
 import useGetSuccessTransactions from '../../../hooks/bookings/useGetSuccessTransactions';
+import { Routes } from "../../../types/Routes.enum";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -91,8 +92,10 @@ export default function OwnerIncome() {
     <Container>
     <div className=' flex w-full justify-center items-center'>
         <div className=' w-1/2 bg-white p-8' >
-            <div className=' w-fit self-end ml-auto'>
-                <Button text='Print Report' onClick={()=>handlePrint()}/>
+            <div className=' w-fit self-end ml-auto flex' />
+            <div className="flex gap-3">
+              <Button text='Print Report' onClick={()=>handlePrint()}/>
+              <Button text='Back' onClick={() => window.location.href=Routes.HOME} />
             </div>
             <div  ref={componentRef} className=' p-10'>
             {displayBarGraph}

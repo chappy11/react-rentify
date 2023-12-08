@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { Button } from '../../../component'
 import useGetTransactions from '../../../hooks/bookings/useGetTransactions'
 import TransactionCard from '../bookings/components/TransactionCard';
+import { Routes } from "../../../types/Routes.enum";
 
 export default function Transactions() {
     const {data} = useGetTransactions();
@@ -18,7 +19,7 @@ export default function Transactions() {
               <h1 className="text-xl font-bold">Transaction</h1>
               <div className="flex">
                 <div>
-                  <Button text='Back' onClick={() => window.history.back()} />
+                  <Button text='Back' onClick={() => window.location.href=Routes.HOME} />
                 </div>
               </div>
             </div>
