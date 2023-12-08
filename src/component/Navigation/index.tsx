@@ -67,7 +67,7 @@ export default  function Navigation() {
                  <a href={Routes.HISTORY}  className=" text-white px-4 hover:text-slate-300 relative" >
                     Transaction History
                 </a>
-               
+                
                     <a href={Routes.LOGIN}  className=" text-white px-4 hover:text-slate-300" >
                         {user?.username}
                 </a>
