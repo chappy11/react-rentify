@@ -31,11 +31,6 @@ const ITEM:SidebarItem[] = [
         subitem:[]
     },
     {
-        title:'Category Management',
-        route:Routes.CATEGORIES,
-        subitem:[]
-    },
-    {
         title:'Subscription Management',
         route:Routes.SUBSCRIPTION,
         subitem:[]
