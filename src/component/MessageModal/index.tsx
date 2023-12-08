@@ -59,8 +59,8 @@ export default function MessageModal(props:Props) {
         
     }
   return (
-    <div>
-        <h1 className=' font-bold text-lg'>Message Owner</h1>
+    <div className=' w-[500px]'>
+        <h1 className=' font-bold text-lg '>Message Owner</h1>
         <div className=' w-full mt-10'>
             <input className=' w-full bg-gray-100 border border-gray-200 outline-none rounded-2xl p-3' placeholder='Message' onChange={(e)=>setMessage(e.target.value)}/>
             <div className=' h-10'/>
