@@ -77,7 +77,6 @@ export default function Booking() {
             <div className=" w-full">
                 <p className=" font-bold">{data?.driver?.username}</p>
                 <p>{formatFullName({firstName:data?.driver?.firstName,middleName:data?.driver?.middleName,lastName:data?.driver?.lastName})}</p>
-                {user?.user_type === 'OWNER'  ? <button className=" p-3 bg-green-800 text-white rounded-md" onClick={handleViewDrivers}>Re-Assign Driver</button> : ''}
             </div>
         );
 

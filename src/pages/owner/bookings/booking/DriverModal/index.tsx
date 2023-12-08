@@ -16,10 +16,7 @@ export default function DriverModal(props:Props) {
     const {driversList,setSelectedDriver,setIsOpen,isReAssign,refId} = props;
     const {alertError,alertSuccess} = useAlertOption();
     async function handleSelect(val:any){
-        if(isReAssign){
-          await  handleReassign(val);
-            return;
-        }
+        
         setSelectedDriver(val);
         setIsOpen(false)
     }
