@@ -16,40 +16,41 @@ export default function TransactionTabs() {
             case 0:
                 arr = pendingTransactions as unknown as any[];
                 break;
-                case 1:
-                    arr = pendingTransactions as unknown as any[];
-                    break;
-                    case 2:
-                        arr = pendingTransactions as unknown as any[];
-                        break;
-                        case 3:
-                            arr = pendingTransactions as unknown as any[];
-                            break;
+            case 1:
+                arr = onGoingTransactions as unknown as any[];
+                break;
+            case 2:
+                arr = successTransactions as unknown as any[];
+                break;
+            case 3:
+                arr = declinedTransactions as unknown as any[];
+                break;
         
             default:
                 break;
         }
 
-        return arr.map((val:any,i:number)=>(
+        return arr?.map((val:any,i:number)=>(
             <TransactionCard images={val.images} refId={val.ref_id} key={i.toString()} isRenter={false} description={val.description} image={val.vehicleImage} vehicleName={val.brand} ownerName={formatFullName({firstName:val.firstname,middleName:val.middlename,lastName:val.lastname})} price={val.amount}  />
         ))
-    }, [])
+    }, [tabs]);
     return (
     <div className=' w-full '>
         <div className=' w-full  justify-between flex flex-row '>
-            <div className={tabsDesign(0)}>
+            <div className={tabsDesign(0)} onClick={()=>setTabs(0)}>
                 <p>Pending Transactions</p>
             </div>
-            <div className={tabsDesign(1)}>
+            <div className={tabsDesign(1)} onClick={()=>setTabs(1)}>
                 <p>On Going</p>
             </div>
-            <div className={tabsDesign(2)}>
+            <div className={tabsDesign(2)} onClick={()=>setTabs(2)}>
                 <p>Transaction History</p>
             </div>
-            <div className={tabsDesign(3)}>
+            <div className={tabsDesign(3)} onClick={()=>setTabs(3)}>
                 <p>Canceled</p>
             </div>
         </div>
+        {displayTransactions}
     </div>
   )
 }
