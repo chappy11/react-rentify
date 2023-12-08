@@ -33,7 +33,7 @@ export default function TransactionTabs() {
         return arr?.map((val:any,i:number)=>(
             <TransactionCard images={val.images} refId={val.ref_id} key={i.toString()} isRenter={false} description={val.description} image={val.vehicleImage} vehicleName={val.brand} ownerName={formatFullName({firstName:val.firstname,middleName:val.middlename,lastName:val.lastname})} price={val.amount}  />
         ))
-    }, [tabs]);
+    }, [declinedTransactions, onGoingTransactions, pendingTransactions, successTransactions, tabs]);
     return (
     <div className=' w-full '>
         <div className=' w-full  justify-between flex flex-row '>
