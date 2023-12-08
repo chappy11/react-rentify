@@ -5,6 +5,7 @@ import { useModalContext } from "../../context/ModalContext/ModalContext";
 import UpdateModal from "./component/UpdateModal";
 import UpdateUser from "./component/UpdateUser";
 import DisplayUser from "./component/DisplayUser";
+import { configVariable } from "../../constant/ConfigVariable";
 
 const image = require('../../assets/images/user.png')
 
@@ -20,6 +21,8 @@ export default function Profile() {
         if(!user.image){
             return <img src={image} alt='profile' className=" w-[150px] h-[150px]"/>
         }
+
+        return <img src={configVariable.BASE_URL+user.image} alt="PROFILE"  className=" w-[150px] h-[150px]"/>
         
     }, [user]);
 

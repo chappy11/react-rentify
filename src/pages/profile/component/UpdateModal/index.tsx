@@ -36,7 +36,10 @@ export default function UpdateModal(props:Props) {
       const resp = await updateProfile(formdata);
 
       if(resp.status.toString() === '1'){
-        alertSuccess(resp.message);
+        const saveData = JSON.stringify(resp?.data)
+            await localStorage.setItem('account',saveData);
+          setIsOpen(false);
+            alertSuccess(resp.message);
         return;
       }
 
@@ -49,7 +52,7 @@ export default function UpdateModal(props:Props) {
   }
   
   return (
-    <div className=" w-full">
+    <div className=" w-[600px]">
         <h1 className=" text-center font-bold">Update Profile Picture</h1>
         <div className=" w-full flex flex-col justify-center mt-10">
             <div className=" flex flex-col items-center">
