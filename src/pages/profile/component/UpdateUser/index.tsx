@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Routes } from "../../../../types/Routes.enum";
 import useAlertOption from "../../../../hooks/useAlertOption";
 import { validateMobileNumber } from "../../../../utils/InputValidation";
+import { hasNumber } from "../../../../utils/string";
 
 type Props = {
     user:UserDto
@@ -34,6 +35,25 @@ export default function UpdateUser(props:Props) {
                 icon: 'error',
                 text: 'Special characters are not allowed in the input fields.',
             });
+            return;
+        }
+
+        if(hasNumber(fname)){
+            alertError('Firstname should not include numbers');
+
+            return;
+        }
+
+        
+        if(hasNumber(mname)){
+            alertError('Middlename should not include numbers');
+
+            return;
+        }
+
+        if(hasNumber(lname)){
+            alertError('Middlename should not include numbers');
+
             return;
         }
 
