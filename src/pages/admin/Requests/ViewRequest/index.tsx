@@ -13,7 +13,7 @@ type Props = {
 export default function ViewRequest(props:Props) {
   const {data,onClose,onAccept} = props;
     return (
-    <div className=' w-full h-full overflow-y-auto '>
+    <div className=' w-[800px] h-full overflow-y-auto '>
         <div className=' '>
             <div className=' '>
         <h1 className=' font-bold text-lg p-5'>Request Info</h1>
