@@ -24,7 +24,7 @@ export default function Profile() {
     }, [user]);
 
     const handleShowUpdatePicture =()=>{
-        setContent(<UpdateModal/>)
+        setContent(<UpdateModal user_id={user?.user_id}/>)
         setIsOpen(true)
     }
 

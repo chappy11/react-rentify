@@ -23,7 +23,7 @@ export default function AdminProfile() {
     }, [user]);
 
     const handleShowUpdatePicture =()=>{
-        setContent(<UpdateModal/>)
+        setContent(<UpdateModal user_id={user.user_id}/>);
         setIsOpen(true)
     }
 

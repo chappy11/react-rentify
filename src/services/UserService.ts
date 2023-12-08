@@ -50,3 +50,9 @@ export const getUsers = async(payload?:any)=>{
 
     return resp.data;
 }
+
+export const updateProfile = async(formdata:any)=>{
+    const resp = await axiosInstance.post(`user/updatephotos`,formdata,{headers:{'Content-Type':'multipart/form-data'}});
+
+    return resp.data;
+}
