@@ -7,7 +7,7 @@ export default function TransactionTabs() {
     const [tabs,setTabs] = useState<number>(0);
     const {pendingTransactions,onGoingTransactions,successTransactions,declinedTransactions} = useGetTransactionByUserType();
     const tabsDesign = useCallback((tabNo:number) => {
-        return tabNo == tabs ? ' border-b border-b-slate-800 p-5' : 'p-5'
+        return tabNo == tabs ? ' border-b border-b-slate-800 p-5 cursor-pointer' : 'p-5 cursor-pointer'
     }, [tabs]);
 
     const displayTransactions = useMemo(() => {
@@ -36,7 +36,7 @@ export default function TransactionTabs() {
     }, [declinedTransactions, onGoingTransactions, pendingTransactions, successTransactions, tabs]);
     return (
     <div className=' w-full '>
-        <div className=' w-full  justify-between flex flex-row '>
+        <div className=' w-full  justify-between flex flex-row mb-10'>
             <div className={tabsDesign(0)} onClick={()=>setTabs(0)}>
                 <p>Pending Transactions</p>
             </div>
@@ -50,6 +50,7 @@ export default function TransactionTabs() {
                 <p>Canceled</p>
             </div>
         </div>
+
         {displayTransactions}
     </div>
   )

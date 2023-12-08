@@ -9,15 +9,7 @@ import TransactionTabs from '../../../component/TransactionTabs';
 export default function MyTransactions() {
   const {data} = useGetBookingByCustomerId();
   
-  const displayData = useMemo(() => {
-    if(!data){
-        return;
-    }
-
-    return data.map((val:any,i:number)=>(
-        <TransactionCard images={val.images} refId={val.ref_id} key={i.toString()} isRenter={false} description={val.description} image={val.vehicleImage} vehicleName={val.brand} ownerName={formatFullName({firstName:val.firstname,middleName:val.middlename,lastName:val.lastname})} price={val.amount}  />
-    ))
-  }, [data])
+  
   
   return (
     <div className='pt-32 flex justify-center'>

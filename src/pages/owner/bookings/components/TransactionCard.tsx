@@ -32,7 +32,7 @@ export default function TransactionCard
     }, [isRenter])
   
     return (
-    <div className=' border-b border-b-gray-500 w-full flex flex-row'>
+    <div className=' border-b border-b-gray-500 w-full flex flex-row bg-[whitesmoke]'>
         <div className=' flex flex-1'>
             <div className=' px-10 py-5'>
                 <h1 className='  font-bold text-lg'>{refId}</h1>
