@@ -37,7 +37,7 @@ const OPTION = [
     redirect:Routes.SUBSCRIPTION,
   },
   {
-    title:"Subscription",
+    title:"Income",
     icon:TRANSACTIONS,
     redirect:Routes.OWNER_INCOME,
   }

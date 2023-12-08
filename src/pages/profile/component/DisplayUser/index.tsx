@@ -1,5 +1,6 @@
 import { Button, ListItem } from "../../../../component";
 import { UserDto } from "../../../../types/UserDto.type";
+import { Routes } from "../../../../types/Routes.enum";
 
 type Props = {
     user:UserDto;
@@ -22,7 +23,7 @@ export default function DisplayUser(props:Props) {
         <div className=" h-10"/>
         <div className=' my-10 flex w-full flex-row gap-5'>
             <Button text="Update Details" onClick={()=>props.setIsUpdate(true)}/>
-            <Button text='Back' onClick={() => window.history.back()} />
+            <Button text='Back' onClick={() => window.location.href=Routes.HOME} />
         </div>
     </div>
   )

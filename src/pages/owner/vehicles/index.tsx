@@ -115,8 +115,8 @@ export default function Vehicles() {
                     <h1 className=" font-bold text-lg">Vehicle</h1>
                 </div>
                 <div className=' flex flex-1 gap-3'>
-                <Button text="Add Vehicle" onClick={handleAddVehicle}/>
-                    <Button text='Back' onClick={() => window.history.back()} />
+                    <Button text="Add Vehicle" onClick={handleAddVehicle}/>
+                    <Button text='Back' onClick={() => window.location.href=Routes.HOME} />
                 </div>
             </div>
             <div className=" h-10"/>

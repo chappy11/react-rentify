@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import useGetBookingsByStatus from "../../../hooks/bookings/useGetBookingsByStatus";
 import TransactionCard from "./components/TransactionCard";
 import { Button } from "../../../component";
+import { Routes } from '../../../types/Routes.enum';
 
 export default function Bookings() {
     const {data} = useGetBookingsByStatus({status:'PENDING'});
@@ -20,7 +21,7 @@ export default function Bookings() {
               <h1 className="text-xl font-bold">Pending Booking</h1>
               <div className="flex">
                 <div>
-                  <Button text='Back' onClick={() => window.history.back()} />
+                <Button text='Back' onClick={() => window.location.href=Routes.HOME} />
                 </div>
               </div>
             </div>

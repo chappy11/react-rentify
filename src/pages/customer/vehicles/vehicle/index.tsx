@@ -337,7 +337,7 @@ const [post,setPost] = useState<LatLngExpression>();
                    {displayContent}
             </Modal>  
             <div className=' flex pt-32 justify-center'>
-            <div className=' p-8 bg-white w-1/2'>
+            <div className=' p-12 bg-white w-2/3'>
             <h3 className=' font-bold'>Vehicle Details</h3>
             <div className=' flex'>
                 <div className=' flex flex-1'>
