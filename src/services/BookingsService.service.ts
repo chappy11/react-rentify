@@ -96,3 +96,10 @@ export const getBookingsByUserType = async(id:string,type:string) =>{
 
     return response.data;
 }
+
+
+export const reassigndriver = async(payload:any)=>{
+    const response = await axiosInstance.post(`bookings/reassigndriver`,payload,{headers});
+
+    return response.data;
+}

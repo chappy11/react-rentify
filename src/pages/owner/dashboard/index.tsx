@@ -4,6 +4,7 @@ import useGetAccountFromStorage from '../../../hooks/useGetAccountFromStorage';
 import { formatFullName } from '../../../utils/string';
 import CardOptions from './components/CardOptions';
 import { Routes } from '../../../types/Routes.enum';
+import TransactionTabs from '../../../component/TransactionTabs';
 
 const DRIVER = require('../../../assets/option/driver.png');
 const TRANSACTIONS = require('../../../assets/option/transaction.png');
@@ -20,16 +21,6 @@ const OPTION = [
     title:'Vehicles',
     icon:VEHICLE,
     redirect:Routes.VEHICLES
-  },
-  {
-    title:'Bookings',
-    icon:BOOKINGS,
-    redirect:Routes.BOOKINGS
-  },
-  {
-    title:'Transactions',
-    icon:TRANSACTIONS,
-    redirect:Routes.TRANSACTIONS
   },
   {
     title:"Subscription",
@@ -63,6 +54,11 @@ export default function DashBoard() {
           <div className=' w-1/2 grid grid-cols-2 gap-3'>
            {displayOption}
           </div>
+          <div className=' h-10'/>
+          <div className=' w-1/2 bg-white p-5'>
+          <TransactionTabs/>
+          </div>
+         
        </div>
     </Container>
   )

@@ -19,6 +19,7 @@ import AdditionalFee from "../components/AdditionalFeeModal";
 import PaymentModal from "../components/PaymentModal";
 import RatingModal from "./RatingModal";
 import DeclineModal from "./DeclineModal";
+import DriverModal from "./DriverModal";
 
 export default function Booking() {
     const {id} = useParams();
@@ -30,6 +31,12 @@ export default function Booking() {
     console.log("GG",data)
     const [selectedDriver,setSelectedDriver] = useState<any>(null);
     const {alertWarning,alertSuccess,alertError} = useAlertOption();
+
+    function handleViewDrivers(){
+        setIsOpen(true);
+        const isHasBooking = data?.driver ? true : false;
+        setContent(<DriverModal refId={data?.booking?.driver_id} driversList={driversList} isReAssign={isHasBooking} setSelectedDriver={setSelectedDriver} setIsOpen={setIsOpen} />)
+    }
 
     const displayRating = useMemo(()=>{
         const rate = data?.owner_rating ? parseInt(data?.owner_rating) : 0;
@@ -45,37 +52,32 @@ export default function Booking() {
         }
 
         if(data?.driver === null && user?.user_type === 'RENTER'){
-            return <p>No Driver wait for the owner assign it</p>;
+            return;
         }
         
         if(selectedDriver){
             return(
-            <div className=" w-full font-bold">
+            <div className=" w-full bg-[whitesmoke] flex flex-row p-4">
+                <div className=" flex-1">
                 <p>{selectedDriver?.username}</p>
                 <p>{formatFullName({firstName:selectedDriver?.firstName,middleName:selectedDriver?.middleName,lastName:selectedDriver?.lastName})}</p>
+                </div>
+            
+                {user?.user_type === 'OWNER' ? <button className=" p-3 bg-green-800 text-white rounded-md" onClick={handleViewDrivers}>Re-Assign Driver</button> : ''}
             </div>
             );
         }
-        
 
-        if(!data?.driver &&  user?.user_type === 'OWNER'){
-            return driversList?.map((val:any,i:number)=>(
-                <div className=" w-full border-b border-b-slate-300 py-3 px-5 flex flex-row bg-slate-200">
-                    <div className=" flex flex-1 flex-col">
-                        <p className=" text-lg font-bold">{val.username}</p>
-                        <p>{formatFullName({firstName:val.firstName,middleName:val.middleName,lastName:val.lastName})}</p>
-                    </div>
-                    <div className=" flex items-center">
-                        <button className=" py-2 px-3 rounded-md bg-green-500 text-white" onClick={()=>handleSelectDriver(val)}>Assign This Driver</button>
-                    </div>
-                </div>
-            ))
+        if(!data?.driver){
+            return user?.user_type === 'OWNER'  ? <button className=" p-3 bg-green-800 text-white rounded-md" onClick={handleViewDrivers}>Assign  Driver</button> : '';
         }
+        
      
         return (
             <div className=" w-full">
                 <p className=" font-bold">{data?.driver?.username}</p>
                 <p>{formatFullName({firstName:data?.driver?.firstName,middleName:data?.driver?.middleName,lastName:data?.driver?.lastName})}</p>
+                {user?.user_type === 'OWNER'  ? <button className=" p-3 bg-green-800 text-white rounded-md" onClick={handleViewDrivers}>Re-Assign Driver</button> : ''}
             </div>
         );
 
@@ -115,9 +117,7 @@ export default function Booking() {
 
     },[alertSuccess, alertWarning, data?.booking?.ref_id, selectedDriver])
    
-  function handleSelectDriver(driver:any){
-    setSelectedDriver(driver);
-  }
+
 
 
   const handlePickUp = useCallback(async(status:BookingStatus)=>{
