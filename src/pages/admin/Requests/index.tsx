@@ -1,16 +1,13 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import useGetUserByStatus from '../../../hooks/user/useGetUserByStatus'
 import { formatFullName } from '../../../utils/string'
-import { Routes } from '../../../types/Routes.enum';
-import { Button } from '../../../component';
 import ViewRequest from './ViewRequest';
 import { useModalContext } from '../../../context/ModalContext/ModalContext';
-import useGetAccountFromStorage from '../../../hooks/useGetAccountFromStorage';
 import { approvedRequest } from '../../../services/UserService';
 import Swal from 'sweetalert2';
 export default function Requests() {
     const {data} = useGetUserByStatus({status:'3'})
-    const {setContent,setIsOpen} = useModalContext();
+    const {setContent,setIsOpen,setSize} = useModalContext();
 
     const handleAccept = useCallback(async(userId:string)=>{
         try {
@@ -39,8 +36,9 @@ export default function Requests() {
     }
 
     function handleClick(val:any){
-        setIsOpen(true)
-        setContent(viewInfo(val))
+        setIsOpen(true);
+        setContent(viewInfo(val));
+        setSize(800);
     }   
     const displayData = useMemo(()=>{
         if(data.length < 1){

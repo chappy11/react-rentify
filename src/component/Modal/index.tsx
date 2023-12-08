@@ -30,7 +30,7 @@ const Modal = (props:Props) => {
     if(props.customSize){
       return ` w-[${props.customSize}]`;
     }
-    return props.isFullScreen ? 'w-screen h-screen p-8' : 'lg:w-1/2 md:w-1/2 sm:w-full p-8'
+    return props.isFullScreen ? 'w-screen h-screen p-8' : 'lg:w-1/2 md:w-1/2 sm:w-full p-8 '
 
   }, [props.customSize, props.isFullScreen])
   return (
@@ -38,7 +38,7 @@ const Modal = (props:Props) => {
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-black opacity-50"></div>
-          <div className={`bg-white  rounded-lg z-10 ${size}`}>
+          <div className={`bg-white  rounded-lg z-10 w-1/2 h-[80vh]`}>
             <button
               className="absolute top-0 right-0 m-4 text-gray-500 hover:text-gray-700"
               onClick={closeModal}
