@@ -5,7 +5,7 @@ import useGetAccountFromStorage from '../../../../hooks/useGetAccountFromStorage
 import { createDriver } from '../../../../services/DriverService.service';
 import Swal from 'sweetalert2';
 import { Routes } from '../../../../types/Routes.enum';
-import { containsSpecialCharacters } from '../../../../utils/string';
+import { containsSpecialCharacters, hasNumber } from '../../../../utils/string';
 import { validateMobileNumber } from '../../../../utils/InputValidation';
 
 export default function AddDriver() {
@@ -98,6 +98,10 @@ export default function AddDriver() {
             return true;
         }
 
+        if(hasNumber(firstname)){
+            alertWarning( 'Firstname should not include number')
+            return true;
+        }
         if(!middlename){
             alertWarning("Middlename is Required");
             return true;
@@ -108,6 +112,12 @@ export default function AddDriver() {
             return true;
         }
 
+        if(hasNumber(middlename)){
+            alertWarning( 'Middlename should not include number')
+            return true;
+        }
+
+        
         if(!lastname){
             alertWarning("Lastname is Required");
             return true;
@@ -115,6 +125,11 @@ export default function AddDriver() {
 
         if(containsSpecialCharacters(lastname)){
             alertWarning( 'Special characters are not allowed in the input fields.',)
+            return true;
+        }
+
+        if(hasNumber(lastname)){
+            alertWarning( 'Lastname should not include number')
             return true;
         }
 

@@ -37,3 +37,7 @@ export const containsSpecialCharacters = (input: string): boolean => {
     const regex = /[!@#$%^&*(),.?":{}|<>]/;
     return regex.test(input);
    };
+
+export function hasNumber(str:string) {
+    return /\d/.test(str);
+}

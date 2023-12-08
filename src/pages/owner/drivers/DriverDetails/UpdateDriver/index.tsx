@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { Button, TextInput } from '../../../../../component';
 import useAlertOption from '../../../../../hooks/useAlertOption';
 import { updateDriverDetails } from '../../../../../services/DriverService.service';
 import Swal from 'sweetalert2';
 import { validateMobileNumber } from '../../../../../utils/InputValidation';
+import { hasNumber } from '../../../../../utils/string';
 
 type Props = {
     data:any
@@ -30,6 +31,11 @@ export default function UpdateDriver(props:Props) {
                 icon: 'error',
                 text: 'Special characters are not allowed in the input fields.',
             });
+            return;
+        }
+
+        if(hasNumber(fname) || hasNumber(mname) || hasNumber(lname)){
+            alertError("Name should not include numbers");
             return;
         }
 
