@@ -18,7 +18,7 @@ export default function Cards(props:Props) {
     <div className=' bg-white mx-3  px-3 py-4 rounded-lg shadow-lg zoom group' onClick={()=>props.onClick()}>
         <div className=" h-[300px] flex justify-center items-center">
             <img
-                src={configVariable.BASE_URL+props.vehicle?.images?.[0].path}
+                src={configVariable.BASE_URL+props.vehicle?.images?.[0]?.path}
                 alt={`${brand+vehicle_id}`}
                 className=" h-[300px]  w-full p-3"
             />

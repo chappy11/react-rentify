@@ -4,6 +4,7 @@ import useGetBookingByCustomerId from '../../../hooks/bookings/useGetBookingByCu
 import TransactionCard from '../../owner/bookings/components/TransactionCard';
 import { formatFullName } from '../../../utils/string';
 import { Routes } from '../../../types/Routes.enum';
+import TransactionTabs from '../../../component/TransactionTabs';
 
 export default function MyTransactions() {
   const {data} = useGetBookingByCustomerId();
@@ -30,7 +31,13 @@ export default function MyTransactions() {
               </div>
             </div>
             <div className="h-10" />
-            {displayData}
+            <TransactionTabs/>
+            {/* <div className=' w-full grid-cols-4 gap-2'>
+              <div>
+                <p></p>
+              </div>
+            </div>
+            {displayData} */}
         </div>
     </div>
   )

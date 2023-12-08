@@ -90,3 +90,9 @@ export const gettodaysbooking = async()=>{
 
     return response.data;
 }
+
+export const getBookingsByUserType = async(id:string,type:string) =>{
+    const response = await axiosInstance.get(`bookings/gettransactionby/${id}/${type}`);
+
+    return response.data;
+}
