@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import useAlertOption from "../../../../hooks/useAlertOption";
 import { useModalContext } from "../../../../context/ModalContext/ModalContext";
 import { useLoadingContext } from "../../../../context/LoadingContext/LoadingContext";
-import { generateNonce } from "../../../../utils/string";
+import { containsSpecialCharacters, generateNonce } from "../../../../utils/string";
 import { getImage, uploadImage } from "../../../../services/VehicleImage.service";
 import { configVariable } from "../../../../constant/ConfigVariable";
 
@@ -114,6 +114,42 @@ export default function AddVehicle() {
                 return;   
             }
 
+            if(!price){
+                alertWarning(dataIsRequired("Price"));
+                return;
+            }
+
+            if(parseFloat(price) < 1){
+                alertWarning(" Price should not less than one ")
+                return;
+            }   
+          
+            if (containsSpecialCharacters(brand) || containsSpecialCharacters(description) || containsSpecialCharacters(model) || containsSpecialCharacters(capacity) || containsSpecialCharacters(price)) {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Special characters are not allowed in the input fields.',
+                });
+                return;
+            }
+    
+            if(isNaN(parseInt(model)) && model!==''){
+                alertError("Model No should be a number");
+    
+                return;
+            }
+    
+            if(isNaN(parseInt(capacity)) && capacity!==''){
+                alertError("Capacity is invalid");
+    
+                return;
+            }
+    
+            if(isNaN(parseFloat(price)) && price !== ''){
+                alertError("Invalid Price");
+    
+                return;
+            }
+
             if(!orImg){
                 alertWarning(dataIsRequired('Official Receipt Image'));
 
@@ -126,15 +162,7 @@ export default function AddVehicle() {
                 return;   
             }
 
-            if(!price){
-                alertWarning(dataIsRequired("Price"));
-                return;
-            }
-
-            if(parseFloat(price) < 1){
-                alertWarning(" Price should not less than one ")
-                return;
-            }   
+          
 
             let formdata = new FormData();
             formdata.append('userId',user.user_id);
@@ -171,7 +199,6 @@ export default function AddVehicle() {
     async function handleUpload(ig:any,non:string){
         try {
             openLoading();
-            console.log("GG",non);
             let formdata = new FormData();
             formdata.append('img',ig)
             formdata.append('nonce',non);

@@ -32,3 +32,8 @@ export function displayMonth(noMonth:string){
 
     return months < 2 ? 'month' : 'months';
 }
+
+export const containsSpecialCharacters = (input: string): boolean => {
+    const regex = /[!@#$%^&*(),.?":{}|<>]/;
+    return regex.test(input);
+   };
