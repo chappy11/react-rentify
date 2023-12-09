@@ -1,15 +1,15 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react';
 
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-  } from 'chart.js'
-  import { Bar } from 'react-chartjs-2'
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 import dayjs from 'dayjs';
 import useGetUserForByMonth from '../../../hooks/user/useGetUserForByMonth';
 import useGetAllUser from '../../../hooks/user/useGetAllUser';
@@ -54,7 +54,7 @@ export default function User() {
               {
                 label: 'Dataset 1',
                 data: montsarr,
-                backgroundColor: 'rgb(31 41 55)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 // You can add more properties as needed
               },
             ],

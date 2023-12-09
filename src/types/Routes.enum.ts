@@ -35,4 +35,5 @@ export enum Routes {
     //admin route
     USER = '/user',
     ADMIN_INCOME = '/adminincome',
+    ADMIN_DRIVER = '/admindriver',
 }

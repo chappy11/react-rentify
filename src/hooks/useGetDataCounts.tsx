@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react';
 import { getUsers } from '../services/UserService';
 import { getVehicles } from '../services/VehicleService';
 import { getDrivers } from '../services/DriverService.service';
@@ -9,7 +9,8 @@ export default function useGetDataCounts() {
     const [vehicleCounts,setVehicleCounts] = useState<number>(0);
     const [driverCounts,setDriverCounts] = useState<number>(0);
     const [bookingsCountToday,setBookingDateToday] = useState<number>(0);
-  
+    const [bookingToday,setBookingToday] = useState<any[]>([]);
+    const [drivers,setDrivers] =  useState<any[]>([]);
     const sendRequest = useCallback(
       async() => {
         try {
@@ -22,7 +23,9 @@ export default function useGetDataCounts() {
             setVehicleCounts(vehicles?.data?.data?.length);
             setDriverCounts(driver?.data?.length);
             setBookingDateToday(bookings?.data?.length)
-        } catch (error) {
+            setBookingToday(bookings.data);
+            setDrivers(driver.data);
+          } catch (error) {
             console.log(error)
         }
       }
@@ -38,6 +41,8 @@ export default function useGetDataCounts() {
     userCount,
     vehicleCounts,
         driverCounts,
-        bookingsCountToday
+        bookingsCountToday,
+        bookingToday,
+        drivers
   }
 }
