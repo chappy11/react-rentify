@@ -85,7 +85,7 @@ export default function Vehicles() {
             <div className=" flex flex-row border-b border-b-slate-300" key={val.vehicle_id}>
                 <div className=" flex flex-row">
                     <div>
-                        <img className=" h-52 w-52" src={configVariable.BASE_URL+val.images[0].path} alt="vehicle"/>
+                        <img className=" h-52 w-52" src={configVariable.BASE_URL+val.images[0]?.path} alt="vehicle"/>
                     </div>
                     <div className=" py-5 px-8">
                         <p className=" font-bold">{val.description}</p>

@@ -30,8 +30,7 @@ export default function Categories() {
     return data.map((val:any,i:number)=>{
         return (<tr className=" border-b border-b-slate-400">
             <td className=" p-3 text-center">{val.vehicleType}</td>
-            <td className=" p-3 text-center">{val.min}</td>
-            <td className=" p-3 text-center">{val.max}</td>  
+            <td className=" p-3 text-center">{val.price}</td>  
             <td className=" p-3 text-center">{val.typeDescription}</td>
             <td className=" p-3 text-center">{val.created}</td>
         </tr>)
@@ -55,11 +54,9 @@ return (
             <thead className=" bg-slate-300">
                 <tr className="">
                     <th className=" p-3">Vehicle Type</th>
-                    <th className=" p-3">Mininum Amount</th>
-                    <th className=" p-3">Maximum Amount</th>
+                    <th className=" p-3">Price per kilometer</th>
                     <th className=" p-3">Description</th>
                     <th className=" p-3">Date Created</th>
-                    <th className=" p-3">Action</th>
                 </tr>
             </thead>
             <tbody>

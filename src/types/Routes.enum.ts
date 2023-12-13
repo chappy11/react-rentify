@@ -36,4 +36,5 @@ export enum Routes {
     USER = '/user',
     ADMIN_INCOME = '/adminincome',
     ADMIN_DRIVER = '/admindriver',
+    ADMIN_BRAND = '/brand'
 }

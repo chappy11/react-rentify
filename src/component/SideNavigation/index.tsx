@@ -36,6 +36,16 @@ const ITEM:SidebarItem[] = [
         subitem:[]
     },
     {
+        title:'Categories',
+        route:Routes.CATEGORIES,
+        subitem:[]
+    },
+    {
+        title:'Brand',
+        route:Routes.ADMIN_BRAND,
+        subitem:[]
+    },
+    {
         title:'Driver List',
         route:Routes.ADMIN_DRIVER,
         subitem:[]

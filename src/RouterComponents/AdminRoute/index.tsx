@@ -11,6 +11,7 @@ import Vehicles from '../../pages/admin/Vehicles';
 import Income from '../../pages/admin/Income';
 import AdminProfile from '../../pages/admin/AdminProfile';
 import DriversList from '../../pages/admin/DriversList';
+import Brands from '../../pages/admin/Brands';
 
 export default function AdminRoute() {
   return (
@@ -33,6 +34,7 @@ export default function AdminRoute() {
         <Route path={Routes.ADMIN_INCOME} element={<Income/>}/>
         <Route path={Routes.PROFILE} element={<AdminProfile/>}/>
         <Route path={Routes.ADMIN_DRIVER} element={<DriversList/>}/>
+        <Route path={Routes.ADMIN_BRAND} element={<Brands/>}/>
     </ReactRoutes>
     </SideNavigation>
     </>

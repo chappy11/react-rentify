@@ -11,8 +11,7 @@ type Props = {
 
 export default function AddCategories(props:Props) {
     const {setIsOpen,setIsRefetch} = props;
-    const [min,setMin] = useState<string>("");
-    const [max,setMax] = useState<string>("");
+    const [price,setPrice] = useState<string>("");
     const [vehicleType,setVehicleType] = useState<string>('');
     const [typeDescription,setTypeDescription] = useState<string>("");
     const {alertWarning,alertError} = useAlertOption();
@@ -23,12 +22,9 @@ export default function AddCategories(props:Props) {
                 alertWarning("Vehicle Type Is Required");
                 return
             }
-            if(min === ""){
-                alertWarning("Mininmum Amount Type Is Required");
-                return
-            }
 
-            if(max === ""){
+
+            if(price === ""){
                 alertWarning("Maximum Amount Type Is Required");
                 return
             }
@@ -40,8 +36,7 @@ export default function AddCategories(props:Props) {
 
             const payload = {
                 type:vehicleType,
-                min:min,
-                max:max,
+                price,
                 desc:typeDescription
             }
 
@@ -65,14 +60,12 @@ export default function AddCategories(props:Props) {
   }
   
   return (
-    <div className=" w-full">
+    <div className=" w-[500px]">
     <h1 className=" font-bold text-lg">Create New Category</h1>
     <div className=" h-5"/>
         <TextInput label="Vehicle Type" onChange={(e)=>setVehicleType(e.target.value)} value={vehicleType} />
     <div className=" h-5"/>
-        <TextInput label="Minimum Amount" onChange={(e)=>setMin(e.target.value)} value={min} />
-    <div className=" h-5"/>
-        <TextInput label="Maximum Amount" onChange={(e)=>setMax(e.target.value)} value={max} />
+        <TextInput label="Price per Kilometer" onChange={(e)=>setPrice(e.target.value)} value={price} />
     <div className=" h-5"/>
         <TextInput label="Type Description" onChange={(e)=>setTypeDescription(e.target.value)} value={typeDescription} />
     <div className=" h-5"/>
