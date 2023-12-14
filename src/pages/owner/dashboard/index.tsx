@@ -15,6 +15,16 @@ const VEHICLE = require('../../../assets/option/vehicle.png');
 
 const OPTION = [
   {
+    title:"Subscription",
+    icon:TRANSACTIONS,
+    redirect:Routes.SUBSCRIPTION,
+  },
+  {
+    title:"Income",
+    icon:TRANSACTIONS,
+    redirect:Routes.OWNER_INCOME,
+  },
+  {
     title:'Drivers',
     icon:DRIVER,
     redirect:Routes.DRIVERS
@@ -24,16 +34,7 @@ const OPTION = [
     icon:VEHICLE,
     redirect:Routes.VEHICLES
   },
-  {
-    title:"Subscription",
-    icon:TRANSACTIONS,
-    redirect:Routes.SUBSCRIPTION,
-  },
-  {
-    title:"Income",
-    icon:TRANSACTIONS,
-    redirect:Routes.OWNER_INCOME,
-  }
+ 
 ];
 
 
