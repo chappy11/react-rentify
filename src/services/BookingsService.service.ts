@@ -77,8 +77,8 @@ export const declineAbooking = async(refId:string,payload:any)=>{
     return resp.data;
 }
 
-export const getSuccessTransactions = async(userid:string)=>{
-    const response = await axiosInstance.get(`bookings/getownerincome/${userid}`)
+export const getSuccessTransactions = async(userid:string,payload?:any)=>{
+    const response = await axiosInstance.post(`bookings/getownerincome/${userid}`,payload,{headers:{"Content-Type":"text/plain"}});
 
 
     return response.data;

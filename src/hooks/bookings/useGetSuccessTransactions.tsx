@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { getBookingByStatus, getSuccessTransactions } from '../../services/BookingsService.service';
+import { useCallback, useEffect, useState } from 'react';
+import { getSuccessTransactions } from '../../services/BookingsService.service';
 import { getDataFromStorage } from '../../utils/storage';
 import useAlertOption from '../useAlertOption';
 import dayjs from 'dayjs';
@@ -12,13 +12,14 @@ export default function useGetSuccessTransactions() {
     const {alertError} = useAlertOption();
 
     const sendRequest = useCallback(
-      async() => {
+      async(payload:any) => {
         try {
           const user = await getDataFromStorage('account');
             if(!user){
                 return;
             }
-            const response = await getSuccessTransactions(user.user_id,);
+            
+            const response = await getSuccessTransactions(user.user_id,payload);
             let containerArr:number[] = []
             Array.from({ length: 12 }, (_, index) => index).forEach(number => {
                 const filterData = response.data.filter((el:any)=>{
@@ -54,13 +55,18 @@ export default function useGetSuccessTransactions() {
     
   
     useEffect(() => {
-      sendRequest();
+      const payload = {
+        dateStart: "",
+        dateEnd : ""
+    }
+      sendRequest(payload);
     }, [])
     
     return {
        data,
        incomePerMonth,
-       totalIncome 
+       totalIncome,
+       sendRequest
     }
 
 }

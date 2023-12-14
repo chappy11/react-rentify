@@ -1,20 +1,20 @@
-import React, { useMemo, useRef } from 'react'
-import useGetUserByStatus from '../../../hooks/user/useGetUserByStatus'
-import { Container,Button } from '../../../component';
+import { useMemo, useRef, useState } from 'react';
+import { Container, Button } from '../../../component';
 import useGetSuccessTransactions from '../../../hooks/bookings/useGetSuccessTransactions';
 import { Routes } from "../../../types/Routes.enum";
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-  } from 'chart.js'
-  import { Bar } from 'react-chartjs-2'
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 import dayjs from 'dayjs';
 import { useReactToPrint } from 'react-to-print';
+import useAlertOption from '../../../hooks/useAlertOption';
 
 ChartJS.register(
     CategoryScale,
@@ -24,25 +24,28 @@ ChartJS.register(
     Tooltip,
     Legend
   );
-  
-  export const options = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        text: `Owner Income Graph for ${dayjs().year()}`,
-      },
+
+export const options = {
+  responsive: true,
+  plugins: {
+    title: {
+      display: true,
+      text: `Owner Income Graph for ${dayjs().year()}`,
     },
-  };
-  export const months = [
-    'Jan', 'Feb', 'Mar', 'Apr',
-    'May', 'Jun', 'Jul', 'Aug',
-    'Sep', 'Oct', 'Nov', 'Dec'
-  ];
+  },
+};
+export const months = [
+  'Jan', 'Feb', 'Mar', 'Apr',
+  'May', 'Jun', 'Jul', 'Aug',
+  'Sep', 'Oct', 'Nov', 'Dec'
+];
 
 export default function OwnerIncome() {
-    const {data,incomePerMonth,totalIncome} = useGetSuccessTransactions();
+    const {data,incomePerMonth,totalIncome,sendRequest} = useGetSuccessTransactions();
     const componentRef = useRef(null);
+    const [startDate,setStartDate] = useState<string>("");
+    const [endDate,setEndDate] = useState<string>("");
+    const {alertError} = useAlertOption();
     const handlePrint = useReactToPrint({
       content: () => componentRef.current,
     });
@@ -87,7 +90,30 @@ export default function OwnerIncome() {
                   </tr>
           );
         })
-      },[data])
+      },[data]);
+
+      async function handleFilter(){
+        try {
+
+          if(startDate === "" || endDate === ""){
+            alertError("All date si required");
+            return;
+          }
+
+          const payload ={
+            dateStart: startDate,
+            dateEnd : endDate
+        }
+           await sendRequest(payload);
+        } catch (error) {
+          
+        }
+      }
+
+      function clear(){
+        setStartDate("");
+        setEndDate("");
+      }
   return (
     <Container>
     <div className=' flex w-full justify-center items-center'>
@@ -96,6 +122,16 @@ export default function OwnerIncome() {
             <div className="flex gap-3">
               <Button text='Print Report' onClick={()=>handlePrint()}/>
               <Button text='Back' onClick={() => window.location.href=Routes.HOME} />
+            </div>
+            <div className=' flex flex-row mt-5'>
+              <div className=' flex flex-row flex-1 gap-2'>
+                <input type='date' className=' px-2 border border-gray-400' value={startDate} placeholder="" onChange={(e)=>setStartDate(e.target.value)}/>
+                <input type='date' className=' px-2 border border-gray-400' placeholder="" value={endDate} onChange={(e)=>setEndDate(e.target.value)}/>
+              </div>
+              <div className=' flex flex-1 flex-row gap-3'>
+                <Button text='Filter' onClick={()=>handleFilter()}/>
+                <Button text='Cancel' outline onClick={()=>clear()}/> 
+              </div>
             </div>
             <div  ref={componentRef} className=' p-10'>
             {displayBarGraph}
