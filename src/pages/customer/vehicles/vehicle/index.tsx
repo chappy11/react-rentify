@@ -1,7 +1,7 @@
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import 'leaflet/dist/leaflet.css';
-import L, { LatLngExpression, LeafletMouseEvent, Marker, Popup, } from 'leaflet';
+import L, { LatLngExpression, LeafletMouseEvent, Marker } from 'leaflet';
 import { MapContainer, TileLayer, Marker as MapMarker } from 'react-leaflet';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -15,7 +15,6 @@ import useGetAccountFromStorage from '../../../../hooks/useGetAccountFromStorage
 import useGetVehicleDetails from '../../../../hooks/vehicle/useGetVehicleDetails';
 import { createBooking } from '../../../../services/BookingsService.service';
 import { calculateDistance } from '../../../../utils/location.utils';
-import SelectInput from '../../../../component/Select';
 import Swal from 'sweetalert2';
 import { Routes } from '../../../../types/Routes.enum';
 import { useModalContext } from '../../../../context/ModalContext/ModalContext';
@@ -82,8 +81,8 @@ const [post,setPost] = useState<LatLngExpression>();
         }
        
         const total = parseFloat(vehicle?.price ) * distance;
-        
-        setTotalFee(total.toFixed(2).toString())
+        const totalAmountToPay = total + parseFloat(vehicle?.price);
+        setTotalFee(totalAmountToPay.toFixed(2).toString())
         setKilometer(distance.toFixed(2).toString());
         
       }

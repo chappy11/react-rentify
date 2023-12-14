@@ -137,7 +137,7 @@ const displayButton = useMemo(()=>{
         return <Button text='Passenger Picked Up' onClick={handlePickUp}/>
     }
 
-    if(data?.booking?.status === BookingStatus.PICK_UP){
+    if(data?.booking?.status === BookingStatus.PICK_UP && user?.user_type === 'RENTER'){
         return <Button text="Arrived to the destination" onClick={handleDone}/>
     }
 
