@@ -1,4 +1,3 @@
-import React from 'react'
 import useAlertOption from '../../../../../hooks/useAlertOption';
 import Swal from 'sweetalert2';
 import { Routes } from '../../../../../types/Routes.enum';
@@ -14,7 +13,7 @@ export default function CardOptions(props:Props) {
     const {alertError} = useAlertOption();
 
     function handleRedirect(){
-        if(!props.subscription){
+        if(!props.subscription && props.title !== 'Subscription'){
            Swal.fire({
             icon:'warning',
             text:'You have no subscription'
@@ -26,7 +25,7 @@ export default function CardOptions(props:Props) {
            return;
         }
 
-        if(props.subscription.usersub_status === 'EXPIRED'){
+        if(props.subscription?.usersub_status === 'EXPIRED'){
             Swal.fire({
                 icon:'warning',
                 text:'Youre subscription is expired'
@@ -37,6 +36,7 @@ export default function CardOptions(props:Props) {
                });
                return;
         }
+        
         window.location.href=props.redirect
     }
   

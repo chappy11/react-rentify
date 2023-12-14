@@ -75,9 +75,12 @@ export default function DashBoard() {
       <p className=' text-bold text-lg font-bold text-white'>{mySubscription.sub_name}</p> 
       <p className=' text-bold text-md text-white'>{mySubscription.sub_description}</p>
       <div className=' h-5'/>
-      <p className=' text-bold text-md text-white'>Validity until {mySubscription.validity}</p>
+    
       {mySubscription.usersub_status === 'EXPIRED' && 
+        <>
+        <p className=' text-bold text-md text-white'>Validity until {mySubscription.validity}</p>
         <p className=' text-red-500 font-bold'>Expired</p>
+        </>
       }
     </div>
   },[mySubscription])
