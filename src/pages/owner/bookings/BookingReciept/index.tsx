@@ -34,8 +34,8 @@ export default function BookingReceipt() {
           </div>
           <div className="px-6">
             <ListItem label="Reference No." value={data?.booking?.ref_id} />
-            <ListItem label="Official Reciept Date" value={data?.booking?.createdAt}/>
-            <ListItem label="Booking Date" value={dayjs().format("YYYY-MM-DD hh:mm")} />
+            <ListItem label="Official Reciept Date" value={dayjs().format("YYYY-MM-DD hh:mm")}/>
+            <ListItem label="Booking Date" value={data?.booking?.book_date} />
             <ListItem label="Booking Amount" value={data?.booking?.amount} />
             <ListItem label="Additional Fee" value={data?.booking?.additionalfee} />
             <ListItem label="Total Amount" value={displayTotal.toString()} />
