@@ -17,8 +17,8 @@ export const subscribe = async(params:any)=>{
 }
 
 
-export const getAdminIncome = async()=>{
-    const resp = await axiosInstance.get('UserSubscription/income');
+export const getAdminIncome = async(payload:any)=>{
+    const resp = await axiosInstance.post('UserSubscription/income',payload,{headers:{"Content-Type":"text/plain"}});
 
     return resp.data;
 }

@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { getAdminIncome } from '../services/UserSubscription.service'
+import { useCallback, useEffect, useState } from 'react';
+import { getAdminIncome } from '../services/UserSubscription.service';
 import dayjs from 'dayjs';
 
 export default function useGetAdminIncome() {
@@ -7,9 +7,9 @@ export default function useGetAdminIncome() {
     const [graphData,setGraphData] = useState<number[]>([])
     const [totalIncome,setTotalIncome] = useState<number>(0);
     const sendRequest = useCallback(
-      async() => {
+      async(payload:any) => {
         try {
-            const resp = await getAdminIncome();
+            const resp = await getAdminIncome(payload);
             let containerArr:number[] = []
             Array.from({ length: 12 }, (_, index) => index).forEach(number => {
                 const filterData = resp.data.filter((el:any)=>{
@@ -43,7 +43,11 @@ export default function useGetAdminIncome() {
     )
     
     useEffect(() => {
-      sendRequest();
+      const payload ={
+        startDate: "",
+        endDate : ""
+    }
+      sendRequest(payload);
     }, [])
     
   

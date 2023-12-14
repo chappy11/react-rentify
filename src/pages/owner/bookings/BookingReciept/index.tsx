@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { Container, ListItem } from "../../../../component";
 import useGetBookingsByRefId from "../../../../hooks/bookings/useGetBookingsByRefId";
@@ -33,6 +33,7 @@ export default function BookingReceipt() {
           </div>
           <div className="px-6">
             <ListItem label="Reference No." value={data?.booking?.ref_id} />
+            <ListItem label="Official Reciept Date" value={data?.booking?.createdAt}/>
             <ListItem label="Booking Date" value={data?.booking?.book_date} />
             <ListItem label="Booking Amount" value={data?.booking?.amount} />
             <ListItem label="Additional Fee" value={data?.booking?.additionalfee} />

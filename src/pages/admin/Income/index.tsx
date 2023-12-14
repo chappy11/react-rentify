@@ -1,19 +1,20 @@
-import React, { useMemo, useRef } from 'react'
-import useGetAdminIncome from '../../../hooks/useGetAdminIncome'
+import { useMemo, useRef, useState } from 'react';
+import useGetAdminIncome from '../../../hooks/useGetAdminIncome';
 
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-  } from 'chart.js'
-  import { Bar } from 'react-chartjs-2'
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 import dayjs from 'dayjs';
 import { useReactToPrint } from 'react-to-print';
 import { Button } from '../../../component';
+import useAlertOption from '../../../hooks/useAlertOption';
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -38,8 +39,11 @@ ChartJS.register(
     'Sep', 'Oct', 'Nov', 'Dec'
   ];
 export default function Income() {
-    const {graphData,data:users,totalIncome} = useGetAdminIncome();
+    const {graphData,data:users,totalIncome,sendRequest} = useGetAdminIncome();
     const componentRef = useRef(null);
+    const [startDate,setStartDate] = useState<string>("");
+    const [endDate,setEndDate] = useState<string>("");
+    const {alertError} = useAlertOption();
     const handlePrint = useReactToPrint({
       content: () => componentRef.current,
     });
@@ -83,8 +87,29 @@ const displayData = useMemo(()=>{
               </tr>
       );
     })
-  },[users])
+  },[users]);
 
+  async function handleFilter(){
+  try {
+    if(startDate === "" || endDate === ""){
+      alertError("Please fill out all fields")
+      return;
+    }
+    const payload = {
+      startDate: startDate,
+      endDate : endDate
+  }
+   await sendRequest(payload);
+  } catch (error) {
+    alertError();
+  }
+  }
+
+
+  function clear(){
+    setStartDate("");
+    setEndDate("");
+  }
 return (
         <div className=' w-full flex  flex-col'>
            
@@ -92,7 +117,16 @@ return (
                 <div className=' w-1/4 self-end'>
         <Button onClick={()=>handlePrint()} text='Print this Data'/>
         </div>
-          
+        <div className=' w-full flex flex-row mt-10'>
+        <div className=' flex flex-row flex-1 gap-2'>
+                <input type='date' className=' px-2 border border-gray-400' value={startDate} placeholder="" onChange={(e)=>setStartDate(e.target.value)}/>
+                <input type='date' className=' px-2 border border-gray-400' placeholder="" value={endDate} onChange={(e)=>setEndDate(e.target.value)}/>
+              </div>
+              <div className=' flex flex-1 flex-row gap-3'>
+                <Button text='Filter' onClick={()=>handleFilter()}/>
+                <Button text='Cancel' outline onClick={()=>clear()}/> 
+              </div>
+        </div>
       
         <div ref={componentRef} className=' w-full m-auto flex justify-center items-center flex-col'>
         <div className=' w-[900px] mb-10 flex items-center justify-center items-end flex-col'>
