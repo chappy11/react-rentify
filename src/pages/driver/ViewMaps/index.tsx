@@ -130,18 +130,21 @@ const displayButton = useMemo(()=>{
         return;
     }
 
-    if(user.user_type === 'OWNER' || user.user_type === 'RENTER'){
+    if(user.user_type === 'OWNER'){
         return;
     }
-    if(data?.booking?.status === BookingStatus.TO_PICK_UP){
+    if(data?.booking?.status === BookingStatus.TO_PICK_UP && user.user_type !== "RENTER"){
         return <Button text='Passenger Picked Up' onClick={handlePickUp}/>
     }
 
+    
     if(data?.booking?.status === BookingStatus.PICK_UP && user?.user_type === 'RENTER'){
+       
         return <Button text="Arrived to the destination" onClick={handleDone}/>
     }
 
-},[data?.booking?.status, handleDone, handlePickUp,user])
+},[data?.booking?.status, handleDone, handlePickUp, user])
+
 const displayMyCurrentLocation = useMemo(()=>{
     if(!mylocation){
         return;
