@@ -29,7 +29,7 @@ export default function Categories() {
   const displayData = useMemo(()=>{
     return data.map((val:any,i:number)=>{
         return (<tr className=" border-b border-b-slate-400">
-            <td className=" p-3 text-center">{val.vehicleType}</td>
+            <td className=" p-3 text-center">{val.vehicle_type}</td>
             <td className=" p-3 text-center">{val.price}</td>  
             <td className=" p-3 text-center">{val.typeDescription}</td>
             <td className=" p-3 text-center">{val.created}</td>
